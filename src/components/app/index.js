@@ -1,8 +1,4 @@
-import React from 'react';
-import './app';
-
-const App = () => {
-    return <div className="app">App</div>
-};
+import App from './app';
 
 export default App;
+

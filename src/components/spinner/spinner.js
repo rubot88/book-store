@@ -1,5 +1,5 @@
 import React from 'react';
-import './spinner';
+import './spinner.scss';
 
 const Spinner = () => {
     const styleLoader = {
