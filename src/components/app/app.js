@@ -1,8 +1,9 @@
 import React from 'react';
+import { withBookstoreService } from '../hoc';
 import './app.scss';
 
-const App = () => {
+const App = ({ bookstoreService }) => {
     return <div>App</div>
 };
 
-export default App;
+export default withBookstoreService()(App);

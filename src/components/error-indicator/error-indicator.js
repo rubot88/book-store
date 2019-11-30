@@ -1,8 +1,10 @@
 import React from 'react';
 import './error-indicator.scss';
-import icon from './error-icon';
+import icon from './error-icon.png';
 
 const ErrorIndicator = () => {
+    console.log(icon);
+    
     return (
         <div className="error-indicator">
             <img src={icon} alt="error icon" />
