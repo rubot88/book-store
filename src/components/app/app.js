@@ -1,11 +1,12 @@
 import React from 'react';
-import { Route, Link } from 'react-router-dom';
+import { Route, Link, Switch } from 'react-router-dom';
 import { HomePage } from '../pages';
-import { CardPage } from '../pages';
+import { CartPage } from '../pages';
 import './app.scss';
 
 const App = () => {
     return (
+
         <div className="app">
             <ul className="nav justify-content-center">
                 <li className="nav-item">
@@ -13,18 +14,18 @@ const App = () => {
                 </li>
                 <li className="nav-item">
 
-                    <Link to='/card/'>Card</Link>
+                    <Link to='/cart/'>Cart</Link>
                 </li>
             </ul>
-
-            <Route
-                path='/'
-                component={HomePage}
-                exact />
-            <Route
-                path='/card'
-                component={CardPage}
-                exact />
+            <Switch>
+                <Route
+                    path='/'
+                    component={HomePage}
+                    exact />
+                <Route
+                    path='/cart'
+                    component={CartPage} />
+            </Switch>
         </div>
     )
 };

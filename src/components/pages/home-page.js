@@ -1,10 +1,22 @@
 import React from 'react';
 
+import BookList from '../book-list';
+
 const HomePage = () => {
+    const books = [
+        {
+            id: 1,
+            title: 'Production-Ready Microservices',
+            author: 'Susan Fauler'
+        },
+        {
+            id: 2,
+            title: 'Release It!',
+            author: 'Michael T. Nygard'
+        }
+    ];
     return (
-        <div className="jumbotron center">
-            <h2>This is a Home page!</h2>
-        </div>
+        <BookList books={books} />
     );
 
 };
