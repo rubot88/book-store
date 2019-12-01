@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import BookListItem from '../book-list-item';
 import { withBookstoreService } from '../hoc';
-import { booksLoaded } from '../actions';
+import { booksLoaded } from '../../actions/';
 import { compose } from '../../utils';
 import './book-list.scss';
 
@@ -20,13 +20,12 @@ class BookList extends Component {
             const { id } = book;
             return (
                 <li
-                    className="list-group-item"
                     key={id}>
                     <BookListItem book={book} />
                 </li>)
         });
         return (
-            <ul className="list-group">
+            <ul className="book-list">
                 {bookList}
             </ul>
         );

@@ -1,5 +1,7 @@
 import React from 'react';
-import { Route, Link, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
+
+import StoreHeader from '../store-header';
 import { HomePage } from '../pages';
 import { CartPage } from '../pages';
 import './app.scss';
@@ -7,16 +9,8 @@ import './app.scss';
 const App = () => {
     return (
 
-        <div className="app">
-            <ul className="nav justify-content-center">
-                <li className="nav-item">
-                    <Link to='/'>Home</Link>
-                </li>
-                <li className="nav-item">
-
-                    <Link to='/cart/'>Cart</Link>
-                </li>
-            </ul>
+        <main role="main" className="container">
+            <StoreHeader numItems={5} total={210} />
             <Switch>
                 <Route
                     path='/'
@@ -26,7 +20,7 @@ const App = () => {
                     path='/cart'
                     component={CartPage} />
             </Switch>
-        </div>
+        </main>
     )
 };
 
