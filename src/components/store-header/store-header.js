@@ -8,7 +8,7 @@ const StoreHeadear = ({ numItems, total }) => {
             <Link to="/">
                 <div className="logo text-dark" >Bookstore</div>
             </Link>
-            <Link to="/">
+            <Link to="/cart/">
                 <div className="shopping-cart" href="#">
                     <i className="cart-icon fa fa-shopping-cart" />
                     {numItems} items (${total})
