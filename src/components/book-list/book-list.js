@@ -9,7 +9,23 @@ import { fetchBooks } from '../../actions/';
 import { compose } from '../../utils';
 import './book-list.scss';
 
-class BookList extends Component {
+const BookList = ({ books }) => {
+    return (
+        <ul className="book-list">
+            {
+                books.map((book) => {
+                    const { id } = book;
+                    return (
+                        <li
+                            key={id}>
+                            <BookListItem book={book} />
+                        </li>)
+                })
+            }
+        </ul>
+    );
+}
+class BookListContainer extends Component {
     componentDidMount() {
         this.props.fetchBooks();
     }
@@ -21,19 +37,7 @@ class BookList extends Component {
         if (error) {
             return <ErrorIndicator error={error.message} />
         }
-        const bookList = books.map((book) => {
-            const { id } = book;
-            return (
-                <li
-                    key={id}>
-                    <BookListItem book={book} />
-                </li>)
-        });
-        return (
-            <ul className="book-list">
-                {bookList}
-            </ul>
-        );
+        return <BookList books={books} />
     }
 };
 const mapStateToProps = ({ books, loading, error }) => {
@@ -44,6 +48,8 @@ const mapStateToProps = ({ books, loading, error }) => {
     };
 };
 
+
+
 const mapDispatchToProps = (dispatch, { bookstoreService }) => {
     return {
         fetchBooks: fetchBooks(bookstoreService, dispatch)
@@ -53,4 +59,4 @@ const mapDispatchToProps = (dispatch, { bookstoreService }) => {
 export default compose(
     withBookstoreService(),
     connect(mapStateToProps, mapDispatchToProps)
-)(BookList);
+)(BookListContainer);
