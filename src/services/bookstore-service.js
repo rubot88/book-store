@@ -22,7 +22,7 @@ export default class BookstoreService {
                     rej(new Error('Something has gone terribly wrong'));
                 }
                 res(this.data)
-            }, 1000)
+            }, 500)
         })
     }
 }
