@@ -1,10 +1,10 @@
 import React from 'react';
 
-import './store-cart-table.scss';
+import './shopping-cart-table.scss';
 
-const StoreCartTable = () => {
+const ShoppingCartTable = () => {
     return (
-        <div className="store-cart-table">
+        <div className="shopping-cart-table">
             <h2>Your order</h2>
             <table className="table">
                 <thead>
@@ -46,4 +46,4 @@ const StoreCartTable = () => {
     );
 };
 
-export default StoreCartTable;
+export default ShoppingCartTable;
