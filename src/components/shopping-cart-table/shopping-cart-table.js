@@ -5,35 +5,35 @@ import './shopping-cart-table.scss';
 
 const ShoppingCartTable = ({ items, total, onIncrease, onDecrease, onDelete }) => {
     const renderRow = (item, idx) => {
-        const { id, name, count, total } = item;
+        const { id, title, count, total } = item;
         return (
             <tr key={id}>
                 <td>{idx + 1}</td>
-                <td>{name}</td>
+                <td>{title}</td>
                 <td>{count}</td>
                 <td>${total}</td>
                 <td>
                     <button
-                        className="btn btn-outline-danger btn-sm float-right"
-                        onClick={() => onDelete(id)}>
-                        <i className="fa fa-trash-o" />
-                    </button>
-                    <button
-                        className="btn btn-outline-success btn-sm float-right"
+                        className="btn btn-outline-success btn-sm "
                         onClick={() => onIncrease(id)}>
                         <i className="fa fa-plus-circle" />
                     </button>
                     <button
-                        className="btn btn-outline-warning btn-sm float-right"
+                        className="btn btn-outline-warning btn-sm "
                         onClick={() => onDecrease(id)}>
                         <i className="fa fa-minus-circle" />
+                    </button>
+                    <button
+                        className="btn btn-outline-danger btn-sm "
+                        onClick={() => onDelete(id)}>
+                        <i className="fa fa-trash-o" />
                     </button>
                 </td>
             </tr>
         );
     }
     return (
-        <div className="shopping-cart-table">
+        <div className="shopping-cart-table text-center">
             <h2>Your order</h2>
             <table className="table">
                 <thead>
@@ -45,7 +45,7 @@ const ShoppingCartTable = ({ items, total, onIncrease, onDecrease, onDelete }) =
                         <th>Action</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody >
                     {items.map(renderRow)}
                 </tbody>
             </table>
