@@ -15,7 +15,7 @@ const findIndexById = (items, id) => {
     return items.findIndex((item) => item.id === id);
 }
 
-const updateCartItem = (book, item = {}) => {
+const increaseBookCount = (book, item = {}) => {
     const { id = book.id,
         title = book.title,
         count = 0,
@@ -26,6 +26,19 @@ const updateCartItem = (book, item = {}) => {
         title,
         count: count + 1,
         total: total + book.price
+    };
+};
+const decreaseBookCount = (book, item = {}) => {
+    const { id = book.id,
+        title = book.title,
+        count = 0,
+        total = 0 } = item;
+
+    return {
+        id,
+        title,
+        count: count <= 0 ? 0 : count - 1,
+        total: total <= 0 ? 0 : total - book.price
     };
 };
 const updateCartItems = (cartItems, item, idx) => {
@@ -75,21 +88,32 @@ const reducer = (state = initialState, action) => {
                 loading: false,
                 error: action.payload
             };
-        case 'BOOK_ADDED_TO_CART':
+        case 'BOOK_ADDED_TO_CART': {
             const book = findItemById(state.books, action.payload)
             const itemIndex = findIndexById(cartItems, action.payload);
             const item = cartItems[itemIndex];
 
-            const newItem = updateCartItem(book, item);
+            const newItem = increaseBookCount(book, item);
             return {
                 ...state,
                 cartItems: updateCartItems(cartItems, newItem, itemIndex)
             }
+        }
         case 'BOOK_DELETED_FORM_CART':
-            return{
+            return {
                 ...state,
-                cartItems: removeItem(cartItems,action.payload)
+                cartItems: removeItem(cartItems, action.payload)
             }
+        case 'BOOK_DECREASED': {
+            const book = findItemById(state.books, action.payload)
+            const itemIndex = findIndexById(cartItems, action.payload);
+            const item = cartItems[itemIndex];
+            const newItem = decreaseBookCount(book, item);
+            return {
+                ...state,
+                cartItems: updateCartItems(cartItems, newItem, itemIndex)
+            }
+        }
         default:
             return state;
     }
