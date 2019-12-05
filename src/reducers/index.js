@@ -42,6 +42,14 @@ const updateCartItems = (cartItems, item, idx) => {
     ]
 };
 
+const removeItem = (items, id) => {
+    const idx = findIndexById(items, id);
+    return [
+        ...items.slice(0, idx),
+        ...items.slice(idx + 1)
+    ]
+}
+
 const reducer = (state = initialState, action) => {
     const { cartItems } = state;
 
@@ -76,6 +84,11 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 cartItems: updateCartItems(cartItems, newItem, itemIndex)
+            }
+        case 'BOOK_DELETED_FORM_CART':
+            return{
+                ...state,
+                cartItems: removeItem(cartItems,action.payload)
             }
         default:
             return state;
