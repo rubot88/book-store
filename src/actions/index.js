@@ -33,7 +33,22 @@ const bookAddedToCart = (bookId) => {
     }
 }
 
+const bookDecreased = (id) => {
+    return {
+        type: 'BOOK_DECREASED',
+        payload: id
+    }
+};
+const bookDeletedFormCart = (id) => {
+    return {
+        type: 'BOOK_DELETED_FORM_CART',
+        payload: id
+    }
+};
+
 export {
     fetchBooks,
-    bookAddedToCart
+    bookAddedToCart,
+    bookDecreased,
+    bookDeletedFormCart
 };

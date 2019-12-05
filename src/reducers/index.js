@@ -7,19 +7,14 @@ const initialState = {
 
 };
 
-const updateCartItems = (cartItems, item, idx) => {
-    if (idx === -1) {
-        return [
-            ...cartItems,
-            item
-        ];
-    }
-    return [
-        ...cartItems.slice(0, idx),
-        item,
-        ...cartItems.slice(idx + 1)
-    ]
+const findItemById = (items, id) => {
+    return items.find((item) => item.id === id);
 };
+
+const findIndexById = (items, id) => {
+    return items.findIndex((item) => item.id === id);
+}
+
 const updateCartItem = (book, item = {}) => {
     const { id = book.id,
         title = book.title,
@@ -33,8 +28,23 @@ const updateCartItem = (book, item = {}) => {
         total: total + book.price
     };
 };
+const updateCartItems = (cartItems, item, idx) => {
+    if (idx === -1) {
+        return [
+            ...cartItems,
+            item
+        ];
+    }
+    return [
+        ...cartItems.slice(0, idx),
+        item,
+        ...cartItems.slice(idx + 1)
+    ]
+};
 
 const reducer = (state = initialState, action) => {
+    const { cartItems } = state;
+
     switch (action.type) {
         case 'FETCH_BOOKS_REQUEST':
             return {
@@ -58,10 +68,8 @@ const reducer = (state = initialState, action) => {
                 error: action.payload
             };
         case 'BOOK_ADDED_TO_CART':
-            const bookId = action.payload;
-            const book = state.books.find((book) => book.id === bookId);
-            const { cartItems } = state;
-            const itemIndex = cartItems.findIndex(({ id }) => id === bookId);
+            const book = findItemById(state.books, action.payload)
+            const itemIndex = findIndexById(cartItems, action.payload);
             const item = cartItems[itemIndex];
 
             const newItem = updateCartItem(book, item);
