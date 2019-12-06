@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 
 import {
     bookAddedToCart,
-    bookDecreased,
-    bookDeletedFormCart
+    bookRemovedFromCart,
+    allBooksRemovedFromCart
 } from '../../actions';
 import './shopping-cart-table.scss';
 
@@ -68,12 +68,10 @@ const mapStateToProps = ({ cartItems, orderTotal }) => {
     }
 };
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        onIncrease: (id) => dispatch(bookAddedToCart(id)),
-        onDecrease: (id) => dispatch(bookDecreased(id)),
-        onDelete: (id) => dispatch(bookDeletedFormCart(id))
-    }
+const mapDispatchToProps = {
+    onIncrease: bookAddedToCart,
+    onDecrease: bookRemovedFromCart,
+    onDelete: allBooksRemovedFromCart
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ShoppingCartTable);
