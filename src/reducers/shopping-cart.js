@@ -1,3 +1,6 @@
+const updateTotalPrice = (cartItems) => {
+    return cartItems.reduce((total, item) => total + item.total, 0)
+}
 const updateCartItem = (book, item = {}, quantity) => {
     const { id = book.id,
         title = book.title,
@@ -39,9 +42,11 @@ const updateOrder = (state, bookId, quantity) => {
     const item = cartItems[itemIndex];
 
     const newItem = updateCartItem(book, item, quantity);
+    const newItems = updateCartItems(cartItems, newItem, itemIndex);
+
     return {
-        cartItems: updateCartItems(cartItems, newItem, itemIndex),
-        orderTotal: 0
+        cartItems: newItems,
+        orderTotal: updateTotalPrice(newItems)
     }
 };
 
