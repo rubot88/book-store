@@ -1,12 +1,13 @@
 import React from 'react';
+import ShoppingCartTable from '../shopping-cart-table';
+
 
 const CartPage = () => {
     return (
-        <div className="jumbotron d-flex justify-content-center">
-            <h2>This is a Cart page!</h2>
+        <div>
+            <ShoppingCartTable />
         </div>
     );
-
 };
 
 export default CartPage;
